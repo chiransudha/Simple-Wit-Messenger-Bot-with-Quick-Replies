@@ -2,7 +2,7 @@
 
 // Weather Example
 // See https://wit.ai/sungkim/weather/stories and https://wit.ai/docs/quickstart
-const Wit = require('node-wit').Wit;
+//const Wit = require('node-wit').Wit;
 //const Wit = require('./qrWit.js');
 
 const FB = require('./facebook.js');
@@ -73,16 +73,16 @@ const firstEntityValue = (entities, entity) => {
 // };
 
 
-const getWit = () => {
-  return new Wit(Config.WIT_TOKEN, actions);
-};
+// const getWit = () => {
+//   return new Wit(Config.WIT_TOKEN, actions);
+// };
 
-exports.getWit = getWit;
+// exports.getWit = getWit;
 
 // bot testing mode
 // http://stackoverflow.com/questions/6398196
-if (require.main === module) {
-  console.log("Bot testing mode.");
-  const client = getWit();
-  client.interactive();
-}
+// if (require.main === module) {
+//   console.log("Bot testing mode.");
+//   const client = getWit();
+//   client.interactive();
+// }
