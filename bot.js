@@ -19,58 +19,58 @@ const firstEntityValue = (entities, entity) => {
 };
 
 // Bot actions
-const actions = {
-  say(sessionId, context, message, cb) {
-    console.log("bot.js got say action from wit")
-    console.log(message);
-    console.log(context);
-    //console.log(quickreplies); //how to get quick replies?  this fails.    
-    // Bot testing mode, run cb() and return
-    if (require.main === module) {
-      cb();
-      return;
-    }
+// const actions = {
+//   say(sessionId, context, message, cb) {
+//     console.log("bot.js got say action from wit")
+//     console.log(message);
+//     console.log(context);
+//     //console.log(quickreplies); //how to get quick replies?  this fails.    
+//     // Bot testing mode, run cb() and return
+//     if (require.main === module) {
+//       cb();
+//       return;
+//     }
 
-    // Our bot has something to say!
-    // Let's retrieve the Facebook user whose session belongs to from context
-    // TODO: need to get Facebook user name
-    const recipientId = context._fbid_;
-    if (recipientId) {
-      // Yay, we found our recipient!
-      // Let's forward our bot response to her.
-      FB.fbMessage(recipientId, message, (err, data) => {
-        if (err) {
-          console.log(
-            'Oops! An error occurred while forwarding the response to',
-            recipientId,
-            ':',
-            err
-          );
-        }
+//     // Our bot has something to say!
+//     // Let's retrieve the Facebook user whose session belongs to from context
+//     // TODO: need to get Facebook user name
+//     const recipientId = context._fbid_;
+//     if (recipientId) {
+//       // Yay, we found our recipient!
+//       // Let's forward our bot response to her.
+//       FB.fbMessage(recipientId, message, (err, data) => {
+//         if (err) {
+//           console.log(
+//             'Oops! An error occurred while forwarding the response to',
+//             recipientId,
+//             ':',
+//             err
+//           );
+//         }
 
-        // Let's give the wheel back to our bot
-        cb();
-      });
-    } else {
-      console.log('Oops! Couldn\'t find user in context:', context);
-      // Giving the wheel back to our bot
-      cb();
-    }
-  },
-  merge(sessionId, context, entities, message, cb) {
-    // Retrieve the location entity and store it into a context field
-    const loc = firstEntityValue(entities, 'location');
-    if (loc) {
-      context.loc = loc; // store it in context
-    }
+//         // Let's give the wheel back to our bot
+//         cb();
+//       });
+//     } else {
+//       console.log('Oops! Couldn\'t find user in context:', context);
+//       // Giving the wheel back to our bot
+//       cb();
+//     }
+//   },
+//   merge(sessionId, context, entities, message, cb) {
+//     // Retrieve the location entity and store it into a context field
+//     const loc = firstEntityValue(entities, 'location');
+//     if (loc) {
+//       context.loc = loc; // store it in context
+//     }
 
-    cb(context);
-  },
+//     cb(context);
+//   },
 
-  error(sessionId, context, error) {
-    console.log(error.message);
-  },
-};
+//   error(sessionId, context, error) {
+//     console.log(error.message);
+//   },
+// };
 
 
 const getWit = () => {
