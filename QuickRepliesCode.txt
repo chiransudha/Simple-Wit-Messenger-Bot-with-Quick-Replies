@@ -1,0 +1,7 @@
+if(response.quickreplies) { // Wit.ai wants us to include quickreplies, alright!
+    response.quick_replies = [];
+
+    for(var i = 0, len = response.quickreplies.length; i < len; i++) { // Loop through quickreplies
+        response.quick_replies.push({ title: response.quickreplies[i], content_type: 'text', payload: 'CUSTOM_TEXT' });
+    }
+    delete response.quickreplies;
